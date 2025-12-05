@@ -1,81 +1,266 @@
-/* Resetare de bază */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: #333; }
-
-/* Culori */
+/* --- 1. SETĂRI GENERALE ȘI VARIABILE --- */
 :root {
-    --primary: #2e7d32; /* Verde închis */
-    --accent: #ffab00;  /* Portocaliu pentru butoane */
-    --light: #f4f4f4;
+    --primary: #2e7d32;      /* Verde pădure */
+    --primary-dark: #1b5e20; /* Verde închis pentru hover */
+    --accent: #ffca28;       /* Galben-auriu pentru butoane */
+    --text-dark: #1f2937;    /* Gri închis pentru text */
+    --text-light: #6b7280;   /* Gri deschis pentru descrieri */
+    --bg-light: #f3f8f3;     /* Fundal foarte deschis */
+    --white: #ffffff;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius: 12px;          /* Colțuri rotunjite moderne */
 }
 
-.container { width: 90%; max-width: 1100px; margin: auto; overflow: hidden; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-/* Header */
-header { background: #fff; padding: 20px 0; border-bottom: 2px solid var(--primary); }
-header .container { display: flex; justify-content: space-between; align-items: center; }
-header ul { list-style: none; display: flex; }
-header ul li { margin-left: 20px; }
-header a { text-decoration: none; color: #333; font-weight: bold; }
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    font-size: 16px;
+}
 
-/* Hero Section */
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- 2. HEADER MODERN (STICKY) --- */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Efect de sticlă mată */
+    padding: 15px 0;
+    position: sticky; /* Rămâne fix sus */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+header nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+header nav a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+header nav a:hover {
+    color: var(--primary);
+}
+
+/* --- 3. HERO SECTION (BANNER) --- */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1920&q=80');
+    /* Imaginea de fundal cu overlay întunecat pentru lizibilitate */
+    background: linear-gradient(rgba(0, 50, 0, 0.6), rgba(0, 50, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
-    height: 60vh;
+    min-height: 80vh; /* Ocupă 80% din înălțimea ecranului */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: var(--white);
+    padding: 0 20px;
 }
-.hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
 
-/* Butoane */
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- 4. BUTOANE --- */
 .btn-main {
     display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 1.1rem;
+    background-color: var(--accent);
+    color: var(--text-dark);
+    padding: 15px 35px;
+    border-radius: 50px; /* Buton rotund tip capsulă */
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(255, 202, 40, 0.4);
+    transform: translateY(0);
 }
-.btn-main:hover { background: #1b5e20; }
 
-/* Secțiuni */
-.section { padding: 50px 0; text-align: center; }
-.bg-light { background: var(--light); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-.card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.btn-main:hover {
+    background-color: #ffd740;
+    transform: translateY(-3px); /* Se ridică puțin la hover */
+    box-shadow: 0 6px 20px rgba(255, 202, 40, 0.6);
+}
 
-/* Formular */
-.contact-form { max-width: 600px; margin: 20px auto; display: flex; flex-direction: column; gap: 15px; }
-.contact-form input, .contact-form textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+/* --- 5. SERVICII (GRID SYSTEM) --- */
+.section { padding: 80px 0; }
 
-/* WhatsApp Plutitor */
+.section h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+}
+
+.grid {
+    display: grid;
+    /* Grid responsiv automat: coloanele se adaptează */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-top: 5px solid var(--primary); /* Linie accent sus */
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efect de plutire */
+}
+
+.card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* --- 6. FORMULAR CONTACT --- */
+.bg-light { background-color: var(--white); }
+
+.contact-form {
+    background: var(--bg-light);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.contact-form button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    border: none;
+}
+
+/* --- 7. WHATSAPP & FOOTER --- */
 .float-wa {
     position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
     width: 60px;
     height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     z-index: 100;
-    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s;
 }
-.float-wa img { width: 35px; height: 35px; }
 
-/* Mobile */
-@media(max-width: 768px) {
-    header .container { flex-direction: column; }
-    header ul { margin-top: 15px; }
-    .hero h2 { font-size: 1.8rem; }
+.float-wa:hover { transform: scale(1.1); }
+.float-wa img { width: 35px; }
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: var(--text-dark);
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
+@media (max-width: 768px) {
+    /* Header pe mobil */
+    header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header nav ul {
+        gap: 15px;
+        flex-wrap: wrap; /* Permite elementelor să treacă pe rândul următor */
+        justify-content: center;
+    }
+    
+    header nav a {
+        background: var(--bg-light);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+
+    /* Hero pe mobil */
+    .hero { min-height: 60vh; }
+    .hero h2 { font-size: 2rem; }
+    
+    /* Ajustări generale */
+    .section { padding: 50px 0; }
+    .card { padding: 30px 20px; }
+    .contact-form { padding: 25px; }
 }
